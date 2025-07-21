@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yajat Chordiya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .typing::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white min-h-screen flex flex-col items-center justify-center px-4">
+
+  <!-- NFC Message -->
+  <div id="nfcMsg" class="hidden text-green-400 font-semibold text-center mb-6">
+    Welcome, NFC visitor! 🚀
+  </div>
+
+  <!-- Name and Bio -->
+  <section class="text-center mb-6">
+    <h1 class="text-5xl font-bold mb-2">Yajat Chordiya</h1>
+    <p id="bio" class="text-xl italic typing"></p>
+  </section>
+
+  <!-- Social + Contact Buttons -->
+  <section class="flex flex-wrap justify-center gap-6 mb-10 text-lg">
+    <a href="https://www.instagram.com/yajat_0747/" target="_blank" class="hover:underline">📸 Instagram</a>
+    <a href="https://snapchat.com/add/yajat0747" target="_blank" class="hover:underline">👻 Snapchat</a>
+    <a href="tel:+917387337125" class="hover:underline">📞 Call Me</a>
+    <a href="mailto:yajat0747@gmail.com" class="hover:underline">📧 Email Me</a>
+  </section>
+
+  <!-- Fortune Cookie -->
+  <section class="text-center mb-10">
+    <h2 class="text-2xl font-semibold mb-2">Fortune Cookie 🍪</h2>
+    <p id="fortuneText" class="italic text-blue-400 mb-4">Click to reveal your fortune!</p>
+    <button onclick="showFortune()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition">Crack Cookie</button>
+  </section>
+
+  <!-- Joke Generator -->
+  <section class="text-center mb-10">
+    <h2 class="text-2xl font-semibold mb-2">Need a Laugh? 😄</h2>
+    <p id="jokeText" class="italic text-yellow-300 mb-4">Click below for a joke!</p>
+    <button onclick="generateJoke()" class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-2 rounded-xl transition">Tell Me a Joke</button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-400 mt-6 text-center">
+    Made with sarcasm & caffeine ☕
+  </footer>
+
+  <script>
+    // Typing Bio
+    const bio = "Brains, charm, and a mild addiction to wordplay. Sarcasm is my love language. Timing is my weapon.";
+    let index = 0;
+    function typeBio() {
+      if (index < bio.length) {
+        document.getElementById("bio").textContent += bio.charAt(index);
+        index++;
+        setTimeout(typeBio, 40);
+      }
+    }
+    typeBio();
+
+    // Fortune Generator
+    const fortunes = [
+      "You radiate the chaotic energy of a legend. Use it wisely.",
+      "A stranger thinks you look cool today. It's me. You're welcome.",
+      "Be the plot twist you wish to see in the world.",
+      "You're not late, you're dramatically on time.",
+      "Today’s vibe: thriving, unbothered, and slightly dangerous."
+    ];
+    function showFortune() {
+      const fortuneText = document.getElementById('fortuneText');
+      const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+      fortuneText.textContent = randomFortune;
+    }
+
+    // Joke Generator
+    const jokes = [
+      "Why don’t skeletons fight each other? They don’t have the guts.",
+      "Parallel lines have so much in common… it's a shame they’ll never meet.",
+      "Why do programmers prefer dark mode? Because light attracts bugs!",
+      "I’m on a seafood diet. I see food, and I eat it.",
+      "My computer told me to relax. Now I’m stuck watching cat videos."
+    ];
+    function generateJoke() {
+      const jokeText = document.getElementById('jokeText');
+      const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      jokeText.textContent = randomJoke;
+    }
+
+    // NFC Logic
+    if (window.location.search.includes("nfc=true")) {
+      document.getElementById("nfcMsg").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
